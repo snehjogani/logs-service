@@ -1,7 +1,12 @@
 {
   "name": "logs-service",
+  "description": "cloud  assignment 3",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snehjogani/logs-service.git"
+  },
   "scripts": {
     "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src/index.js"

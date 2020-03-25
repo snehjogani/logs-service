@@ -10,7 +10,7 @@ module.exports = (app) => {
     const { body: { keyword } } = req
     fs.readFile(filePath, 'utf8', (e, data) => {
       if (e) {
-        console.log(e)
+        console.log('fs error', e)
         return
       }
       const logData = data ? JSON.parse(data) : {}
@@ -20,6 +20,7 @@ module.exports = (app) => {
       }
       logData[keyword] = logObject
       fs.writeFileSync(filePath, JSON.stringify(logData))
+      // res.send({ logData })
     })
     await axios({ method: 'GET', url: `http://${HOSTNAME}:${CATLOG_PORT}/catlog`, params: { keyword } })
       .then(({ data }) => res.send(data))
