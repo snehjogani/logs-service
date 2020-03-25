@@ -1,0 +1,16 @@
+FROM node:12
+
+COPY . /opt/app
+
+WORKDIR /opt/app
+
+ENV PORT=3002
+ENV CATLOG_PORT=3001
+ENV HOSTNAME=52.55.146.233
+
+EXPOSE 3002
+
+RUN npm i
+
+
+CMD npm start
