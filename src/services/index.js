@@ -6,7 +6,7 @@ const filePath = './public/logs.json'
 const { HOSTNAME, CATLOG_PORT } = process.env
 
 module.exports = (app) => {
-  app.post('/logs', async (req, res) => {
+  app.post('/logs', (req, res) => {
     const { body: { keyword } } = req
     fs.readFile(filePath, 'utf8', (e, data) => {
       if (e) {
@@ -22,7 +22,7 @@ module.exports = (app) => {
       fs.writeFileSync(filePath, JSON.stringify(logData))
       // res.send({ logData })
     })
-    await axios({ method: 'GET', url: `http://${HOSTNAME}:${CATLOG_PORT}/catlog`, params: { keyword } })
+    axios({ method: 'GET', url: `http://${HOSTNAME}:${CATLOG_PORT}/catlog`, params: { keyword } })
       .then(({ data }) => res.send(data))
       .catch(err => res.send({ message: 'Oops! Something went wrong.' }))
   })
